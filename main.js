@@ -1,10 +1,11 @@
 let storeArray = [];
 let elBody = document.getElementById('my-body');
 let elStoreTitle = document.getElementById('store-title');
-console.log(elStoreTitle);
+//console.log(elStoreTitle);
+
 
 let StoreOne= {
-    location: 'Motuo County/,China',
+    location: 'Motuo County, China',
     name: 'Asian Delights Cookies',
     employees: 20,
     hours: '8am-9pm',
@@ -42,6 +43,25 @@ console.log(StoreThree);
 storeArray.push(StoreOne, StoreTwo, StoreThree);
 
 
+
+let store = function(location, name, employees, hours, inventory){
+    this.locaton = location;
+    this.name= name;
+    this. employees=employees; 
+    this.hours =hours;
+    this.inventory = inventory;
+};
+
+
+//instiate new instances of our store constructor
+let StoreFour = new store( "Bethesda, MD", "PAT'S Cookies", 10, '6am-8pm', 100);
+let StoreFive = new store("Washington, DC", "Patty's Cookies",15, '7am-8pm', 150);
+let StoreSix = new store ("Silver Spring, MD", "Patties Cookies", 20, "8am-8pm", 200 )
+storeArray.push(StoreFour, StoreFive,StoreSix);
+
+console.log(store)
+
+
 function displayStoreTitles() {
     for(let i = 0; i < storeArray.length; i++) {
         let elStoreTitle = document.createElement('h1');
@@ -52,11 +72,4 @@ function displayStoreTitles() {
 }
 
 displayStoreTitles();
-
-
-
-
-
-
-
 
