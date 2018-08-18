@@ -57,13 +57,11 @@ storeArray.push(StoreOne, StoreTwo, StoreThree);
 
 
 
-let store = function(location, name, employees, openTime, closeTime, type, inventory, maxCustomers, minCustomers, avgCookiesPerCustomer){
+let StoreInfo = function(location, name, employees, openTime, closeTime, type, inventory, maxCustomers, minCustomers, avgCookiesPerCustomer){
     this.locaton = location;
     this.name = name; 
-    this. employees= employees; 
+    this.employees= employees; 
     this.openTime = openTime;
-    this.closeTime = closeTime;
-    this.type = type;
     this.inventory = inventory;
     this.maxNumberCustomersPerHour = maxCustomers;
     this.minNumberCustomersPerHour = minCustomers;
@@ -75,12 +73,12 @@ let store = function(location, name, employees, openTime, closeTime, type, inven
 };
 console.log(totalCookiesPerHour) 
 //instiate new instances of our store constructor
-let StoreFour = new store( "Bethesda, MD", "Pat's Cookies", 10, 6, 20, "Coconut Cookies", 1000, 75, 12, 5);
-let StoreFive = new store("Washington, DC", "Patty's Cookies", 15, 7, 20, "Banana Cookies", 1500, 200, 45, 3 );
-let StoreSix = new store ("Silver Spring, MD", "Patties Cookies", 20, 8, 20,"Lemon Cookies", 2000, 350, 80, 8);
+let StoreFour = new StoreInfo( "Bethesda, MD", "Pat's Cookies", 10, 6, 20, "Coconut Cookies", 1000, 75, 12, 5);
+let StoreFive = new StoreInfo("Washington, DC", "Patty's Cookies", 15, 7, 20, "Banana Cookies", 1500, 200, 45, 3 );
+let StoreSix = new StoreInfo ("Silver Spring, MD", "Patties Cookies", 20, 8, 20,"Lemon Cookies", 2000, 350, 80, 8);
 storeArray.push(StoreFour, StoreFive, StoreSix);
 
-console.log(store)
+console.log(StoreInfo)
 
 
 function displayStoreTitles() {
@@ -107,6 +105,7 @@ function displayTotalCookies(store) {
         let elTableData = document.createElement('td');
         elRow.appendChild(elTableData);
         elTableData.innerHTML = store.totalCookiesPerHour();
+        console.log(store)
     }
 };
 
