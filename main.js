@@ -53,34 +53,33 @@ let StoreThree={
 console.log(StoreThree.type);
 console.log(StoreThree);
 //pushing both of our store objects into the storeArray
-storeArray.push(StoreOne, StoreTwo, StoreThree);
+//storeArray.push(StoreOne, StoreTwo, StoreThree);
 
 
 
 let store = function(location, name, employees, openTime, closeTime, type, inventory, maxCustomers, minCustomers, avgCookiesPerCustomer){
-    this.locaton = location;
-    this.name = name; 
-    this. employees= employees; 
-    this.openTime = openTime;
-    this.closeTime = closeTime;
-    this.type = type;
-    this.inventory = inventory;
-    this.maxNumberCustomersPerHour = maxCustomers;
-    this.minNumberCustomersPerHour = minCustomers;
-    this.avgCookiesPerCustomer = avgCookiesPerCustomer;
-};
+    this.locaton = location,
+    this.name = name,
+    this. employees= employees,
+    this.openTime = openTime,
+    this.closeTime = closeTime,
+    this.type = type,
+    this.inventory = inventory,
+    this.maxNumberCustomersPerHour = maxCustomers,
+    this.minNumberCustomersPerHour = minCustomers,
+    this.avgCookiesPerCustomer = avgCookiesPerCustomer,
     this.totalCookiesPerHour = function() {
-    // Math.floor(Math.random() * (100 - 30)) + 30
-    return (Math.floor(Math.random() * (this.maxNumberCustomersPerHour - this.minNumberCustomersPerHour)) + this.minNumberCustomersPerHour) * this.avgCookiesPerCustomer; 
+        return (Math.floor(Math.random() * (this.maxNumberCustomersPerHour - this.minNumberCustomersPerHour)) + this.minNumberCustomersPerHour) * this.avgCookiesPerCustomer; 
+    }
 };
-console.log(totalCookiesPerHour) 
+
 //instiate new instances of our store constructor
 let StoreFour = new store( "Bethesda, MD", "Pat's Cookies", 10, 6, 20, "Coconut Cookies", 1000, 75, 12, 5);
 let StoreFive = new store("Washington, DC", "Patty's Cookies", 15, 7, 20, "Banana Cookies", 1500, 200, 45, 3 );
 let StoreSix = new store ("Silver Spring, MD", "Patties Cookies", 20, 8, 20,"Lemon Cookies", 2000, 350, 80, 8);
 storeArray.push(StoreFour, StoreFive, StoreSix);
-
-console.log(store)
+ 
+console.log(StoreFive);
 
 
 function displayStoreTitles() {
@@ -89,8 +88,7 @@ function displayStoreTitles() {
         elStoreTitle.setAttribute('class', 'store-title');
         elBody.appendChild(elStoreTitle);
         elStoreTitle.innerHTML = storeArray[i].name;
-        
-    }
+        }
 }
 
 displayStoreTitles();
@@ -99,16 +97,18 @@ displayStoreTitles();
 //     let result = Hogwarts.totalSpellsPerHour();
 //     console.log(result);
 // }
+displayTotalCookies(StoreFive);
 
-function displayTotalCookies(store) {
+function displayTotalCookies(theStore) {
     let elRow = document.createElement('tr');
     elTable.appendChild(elRow);
-    for(let i = store.openTime; i < store.closeTime; i ++) {
+    for(let i = theStore.openTime; i < theStore.closeTime; i ++) {
         let elTableData = document.createElement('td');
         elRow.appendChild(elTableData);
-        elTableData.innerHTML = store.totalCookiesPerHour();
-    }
+        elTableData.innerHTML = theStore.totalCookiesPerHour();
+    };
 };
+
 
 function populateTable() {
     for(let i = 0; i < storeArray.length; i++) {
