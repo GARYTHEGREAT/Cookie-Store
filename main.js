@@ -53,7 +53,7 @@ let StoreThree={
 console.log(StoreThree.type);
 console.log(StoreThree);
 //pushing both of our store objects into the storeArray
-storeArray.push(StoreOne, StoreTwo, StoreThree);
+// storeArray.push(StoreOne, StoreTwo, StoreThree);
 
 
 
@@ -63,10 +63,11 @@ let StoreInfo = function(location, name, employees, openTime, closeTime, type, i
     this.employees= employees; 
     this.openTime = openTime;
     this.inventory = inventory;
+    this.closeTime = closeTime;
+    this.type = type;
     this.maxNumberCustomersPerHour = maxCustomers;
     this.minNumberCustomersPerHour = minCustomers;
-    this.avgCookiesPerCustomer = avgCookiesPerCustomer;
-};
+    this.avgCookiesPerCustomer = avgCookiesPerCustomer;   
     this.totalCookiesPerHour = function() {
     // Math.floor(Math.random() * (100 - 30)) + 30
     return (Math.floor(Math.random() * (this.maxNumberCustomersPerHour - this.minNumberCustomersPerHour)) + this.minNumberCustomersPerHour) * this.avgCookiesPerCustomer; 
@@ -86,13 +87,15 @@ function displayStoreTitles() {
         let elStoreTitle = document.createElement('h1');
         elStoreTitle.setAttribute('class', 'store-title');
         elBody.appendChild(elStoreTitle);
-        elStoreTitle.innerHTML = storeArray[i].name;
+        elStoreTitle.innerHTML = 
+    }
+};storeArray[i].name;
         
     }
 }
 
 displayStoreTitles();
-//write a for loop that calls our totalSpellsPerHour method for however many hours the wizards ard training
+//write a for loop that calls our totalCookiesPerHour method for however many hours the wizards ard training
 // for(let i = Hogwarts.startTime; i < Hogwarts.endTime; i++) {
 //     let result = Hogwarts.totalSpellsPerHour();
 //     console.log(result);
@@ -106,14 +109,12 @@ function displayTotalCookies(store) {
         elRow.appendChild(elTableData);
         elTableData.innerHTML = store.totalCookiesPerHour();
         console.log(store)
-    }
-};
 
 function populateTable() {
     for(let i = 0; i < storeArray.length; i++) {
         displayTotalCookies(storeArray[i]);
     }
-}
+};
 
 populateTable();
 
@@ -121,4 +122,4 @@ populateTable();
 // displayTotalSpells(Magica);
 //use prototype to calculate the total number of spells cast per school
 
-//create a table that will display these numbers by hour and total
+    //create a table that will display these numbers by hour and total}
