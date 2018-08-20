@@ -30,3 +30,28 @@ html {
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
 }
+.store-table {
+    border: 1px solid;
+}
+td{
+    border: 1px solid black;
+    color: blueviolet;
+
+
+}
+@font-face {
+    font-family: electricFont;
+    src: url(fonts/waltograph42.otf);
+    font-weight: bold;
+    
+}
+
+h1 { 
+font-family: electricFont;
+font-size: 300%
+
+}
+
+#top-header {
+    font-size:500%;
+}
