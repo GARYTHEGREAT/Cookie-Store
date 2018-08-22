@@ -5,6 +5,7 @@ let elStoreTitle = document.getElementById('store-title');
 //find table by id
 let elTable = document.getElementById('store-table');
 let elForm = document.getElementById('store-form');
+let tblrows = document.getElementsByTagName('tr');
 
 // let StoreOne= {
 //     location: 'Motuo County, China',
@@ -66,13 +67,16 @@ let StoreInfo = function(location, name, employees, openTime, closeTime, type, i
     this.closeTime = closeTime,
     this.type = type,
     this.inventory = inventory,
-    this.maxNumberCustomersPerHour = maxCustomers,
-    this.minNumberCustomersPerHour = minCustomers,
+    this.maxCustomersPerHour = maxCustomers,
+    this.minCustomersPerHour = minCustomers,
     this.avgCookiesPerCustomer = avgCookiesPerCustomer,
     this.totalCookiesPerDay = 0
 
     this.totalCookiesPerHour = function() {
-        return (Math.floor(Math.random() * (this.maxNumberCustomersPerHour - this.minNumberCustomersPerHour)) + this.minNumberCustomersPerHour) * this.avgCookiesPerCustomer; 
+        return (Math.floor(Math.random() * (this.maxCustomersPerHour - this.minCustomersPerHour)) + this.minCustomersPerHour) * this.avgCookiesPerCustomer; 
+   
+   
+        
     }
 };
 
@@ -93,12 +97,19 @@ console.log(storeArray)
 
 
 
+
+
+
+
+
+
+
 // function displayStoreTitles() {
 //     for(let i = 0; i < storeArray.length; i++) {
 //         let elStoreTitle = document.createElement('h1');
 //         elStoreTitle.setAttribute('class', 'store-title');
 //         elBody.appendChild(elStoreTitle);
-
+ 
 //         elStoreTitle.innerHTML = storeArray[i].name;
 //         }
 
@@ -153,12 +164,20 @@ function displayTableHeader() {
     for(let i = 7; i < 20; i++) {
         let elTableHeader = document.createElement('th');
         elRow.appendChild(elTableHeader);
-        elTableHeader.innerHTML = i + ':00 Hours';
-    }
+        elTableHeader.innerHTML =  i + ':00 Hours' 
+    };
     let elTotalHeader = document.createElement('th');
     elRow.appendChild(elTotalHeader);
     elTotalHeader.innerHTML = 'Total';
-}
+
+    
+
+    
+    };
+    
+   
+
+
 
 function displayTotalCookies(store) {
     let elRow = document.createElement('tr');
@@ -179,6 +198,17 @@ function displayTotalCookies(store) {
     console.log(store.name, store.totalCookiesPerDay);
 }
 
+
+
+
+
+
+
+
+
+
+
+
     let storeName = elForm.storeName;
 
 //define function called createNewSchool to let user create a new school with form.
@@ -187,6 +217,13 @@ function createNewStore(event) {
     let newStore = new StoreInfo(location, storeName.value, 500, 7, 20, 4, 10, 50, 10, 100, 58, );
     console.log(newStore);
     displayTotalCookies(newStore);
+
+    for(i=0;i<tblrows.length;i++){
+        if(i%2==0) tblrows[i].style.backgroundColor = 'white';
+        else tblrows[i].style.backgroundColor = 'pink';
+    }
+    
+
 }
 
 elForm.addEventListener('submit', createNewStore);
@@ -205,6 +242,13 @@ function populateTable() {
 
 
 populateTable();
+ tblrows = document.getElementsByTagName('tr');
+
+for(i=0;i<tblrows.length;i++){
+    if(i%2==0) tblrows[i].style.backgroundColor = 'white';
+    else tblrows[i].style.backgroundColor = 'pink';
+}
+
 
 // displayTotalSpells(Hogwarts);
 // displayTotalSpells(Magica);
