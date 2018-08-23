@@ -71,7 +71,8 @@ let StoreInfo = function(location, name, employees, openTime, closeTime, type, i
     this.maxCustomersPerHour = maxCustomers,
     this.minCustomersPerHour = minCustomers,
     this.avgCookiesPerCustomer = avgCookiesPerCustomer,
-    this.totalCookiesPerDay = 0
+    this.totalCookiesPerDay = 0;
+    this.cookiesPerHourArray = []
 
     this.totalCookiesPerHour = function() {
         return (Math.floor(Math.random() * (this.maxCustomersPerHour - this.minCustomersPerHour)) + this.minCustomersPerHour) * this.avgCookiesPerCustomer; 
@@ -192,19 +193,61 @@ function displayTotalCookies(store) {
         elRow.appendChild(elTableData);
         elTableData.innerHTML = result;
         store.totalCookiesPerDay += result;
+        
+        store.cookiesPerHourArray.push(result)
     }
     let elTotalTableData = document.createElement('th');
     elRow.appendChild(elTotalTableData);
     elTotalTableData.innerHTML = store.totalCookiesPerDay;
     console.log(store.name, store.totalCookiesPerDay);
 }
+// difine a function that will display our footer with the total cookiesfor every store per hour
+function displayFooter(){
+
+// create footer row
+let elFooterRow = document.createElement('tr');
+//append our footer row to our table
+elTable.appendChild(elFooterRow); 
+//create a table head element to contain our footer title
+let elFooterTitle = document.createElement('th');
+//append our th to our footer row
+elFooterRow.appendChild(elFooterTitle);
+elFooterTitle.setAttribute('class', 'footer');
+
+//display text in our footer title element
+elFooterTitle.innerHTML = 'Total';
+//declare a variable that will store our total cookies per day
+let total = 0;
+//loop through the amount of hours that the stores are open
+for(let i=0; i < 13; i++) {
+//declare a variable that will have the value and track
+let totalCookiesPerHour = 0;
+for(let j=0; j < storeArray.length; j++) {
+totalCookiesPerHour += storeArray[j].cookiesPerHourArray[i];
+console.log('inner for loop', storeArray[j].name, j);
+}
+console.log('outer for loop', i);
+//create new th to contain our cookies per hour for all stores
+let elTotalCookiesPerHourFooter = document.createElement('th');
+elTotalCookiesPerHourFooter.setAttribute('class', 'footer');
+//append our th to our footer
+elFooterRow.appendChild(elTotalCookiesPerHourFooter);
+//set the inner html to the value of totalCookiesPerHour
+elTotalCookiesPerHourFooter.innerHTML = totalCookiesPerHour;
+//add totalCookiesPerHourto the value of our total variable
+total += totalCookiesPerHour;
+}
+console.log(total)
+//create a new th that will contain our total cookies for everystore for all day
+let elTotalCookiesPerDayFooter = document.createElement('th');
+elTotalCookiesPerDayFooter.setAttribute('class','footer');
+//append our new th to our footer row
+elFooterRow.appendChild(elTotalCookiesPerDayFooter);
+//assign the inner html of our total footer headerto the value of our total variable
+elTotalCookiesPerDayFooter.innerHTML = total;
 
 
-
-
-
-
-
+}  
 
 
 
@@ -220,20 +263,39 @@ function displayTotalCookies(store) {
     let storeAvgCookiesPerCustomers = elForm.avgCookiesPerCustomersPerHour
 
 
-//define function called createNewSchool to let user create a new school with form.
+//define function called createNewSchool to let user create a new school with form
 function createNewStore(event) {
     event.preventDefault();
-    let newStore = new StoreInfo(storeLocation.value, storeName.value, parseInt(storeEmployees.value), 7, 20, storeType.value, parseInt(storeInventory.value), parseInt(storeMaxCustomers.value), parseInt(storeMinCustomers.value), parseInt(storeAvgCookiesPerCustomers.value) );
-    console.log(newStore);
-    displayTotalCookies(newStore);
+//remove our old footer before creating and appendng a new one
+console.log(elTable.childNodes);
+elTable.removeChild(elTable.childNodes[elTable.childNodes.length -1]);
 
-    for(i=0;i<tblrows.length;i++){
-        if(i%2==0) tblrows[i].style.backgroundColor = 'white';
-        else tblrows[i].style.backgroundColor = 'pink';
-    }
-    
+
+
+    let newStore = new StoreInfo(storeLocation.value, storeName.value, parseInt(storeEmployees.value), 7, 20, storeType.value, parseInt(storeInventory.value), parseInt(storeMaxCustomers.value), parseInt(storeMinCustomers.value), parseInt(storeAvgCookiesPerCustomers.value) );
+  //  console.log(newStore);
+  //add our new school to the store array
+  storeArray.push(newStore);
+  //invoke our displayTotalCookies function passing in our new store instance
+  displayTotalCookies(newStore);
+
+  tblrows = document.getElementsByTagName('tr');
+
+  for(i=0;i<tblrows.length; i++){
+     if(i%2==0) tblrows[i].style.backgroundColor = 'white';
+     else tblrows[i].style.backgroundColor = 'pink';
+  } 
+
+
+
+  //re run our display footer function after a new store is added
+  displayFooter();
 
 }
+   // displayTotalCookies(newStore);
+
+    
+
 
 elForm.addEventListener('submit', createNewStore);
 
@@ -247,16 +309,29 @@ function populateTable() {
     }
 }
 
+//define a function that will populate our initial table
+function populateTable() {
+    //invoke our displayTableHeader function that will populate our table header
+    displayTableHeader();
+    //loop through our storeArray that contains all of the instances of our constructor that we have already instantiated
+    for(let i = 0; i < storeArray.length; i++) {
+        //call our displayTotalCookies function passing in the object at index of i in our wizardSchoolArray
+        displayTotalCookies(storeArray[i]);
+        
+    }
+
+displayFooter();
+}
 
 
 
 populateTable();
  tblrows = document.getElementsByTagName('tr');
 
-for(i=0;i<tblrows.length;i++){
+ for(i=0;i<tblrows.length; i++){
     if(i%2==0) tblrows[i].style.backgroundColor = 'white';
     else tblrows[i].style.backgroundColor = 'pink';
-}
+ } 
 
 
 // displayTotalSpells(Hogwarts);
