@@ -210,11 +210,19 @@ function displayTotalCookies(store) {
 
 
     let storeName = elForm.storeName;
+    let storeLocation = elForm.locationName;
+    let storeEmployees =elForm.employeesNumber;
+    let storeType = elForm.storeType;
+    let storeInventory = elForm.inventoryNumber
+    let storeMaxCustomers = elForm.maxCustomersPerHour
+    let storeMinCustomers = elForm.minCustomersPerHour
+    let storeAvgCustomers = elForm.avgCustomersPerHour
+
 
 //define function called createNewSchool to let user create a new school with form.
 function createNewStore(event) {
     event.preventDefault();
-    let newStore = new StoreInfo(location, storeName.value, 500, 7, 20, 4, 10, 50, 10, 100, 58, );
+    let newStore = new StoreInfo(storeLocation.value, storeName.value, parsteInt.storeEmployees.value, 7, 20, storeType.value, parseInt.storeInventory.value, parseInt.storeMaxCustomers.value, parseInt.storeMinCustomers.value, parseInt.storeAvgCustomers.value, 8 );
     console.log(newStore);
     displayTotalCookies(newStore);
 
