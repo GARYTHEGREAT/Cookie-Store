@@ -6,6 +6,7 @@ let elStoreTitle = document.getElementById('store-title');
 let elTable = document.getElementById('store-table');
 let elForm = document.getElementById('store-form');
 let tblrows = document.getElementsByTagName('tr');
+let today = new Date();
 
 // let StoreOne= {
 //     location: 'Motuo County, China',
@@ -216,13 +217,13 @@ function displayTotalCookies(store) {
     let storeInventory = elForm.inventoryNumber
     let storeMaxCustomers = elForm.maxCustomersPerHour
     let storeMinCustomers = elForm.minCustomersPerHour
-    let storeAvgCustomers = elForm.avgCustomersPerHour
+    let storeAvgCookiesPerCustomers = elForm.avgCookiesPerCustomersPerHour
 
 
 //define function called createNewSchool to let user create a new school with form.
 function createNewStore(event) {
     event.preventDefault();
-    let newStore = new StoreInfo(storeLocation.value, storeName.value, parsteInt.storeEmployees.value, 7, 20, storeType.value, parseInt.storeInventory.value, parseInt.storeMaxCustomers.value, parseInt.storeMinCustomers.value, parseInt.storeAvgCustomers.value, 8 );
+    let newStore = new StoreInfo(storeLocation.value, storeName.value, parseInt(storeEmployees.value), 7, 20, storeType.value, parseInt(storeInventory.value), parseInt(storeMaxCustomers.value), parseInt(storeMinCustomers.value), parseInt(storeAvgCookiesPerCustomers.value) );
     console.log(newStore);
     displayTotalCookies(newStore);
 
