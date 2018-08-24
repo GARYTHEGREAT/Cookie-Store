@@ -333,6 +333,24 @@ populateTable();
     else tblrows[i].style.backgroundColor = 'pink';
  } 
 
+//define a function that allows us add a prototype property on to our object constructor instances
+function addCookies(array) {
+    //use prototype to create a spells property on all of the instances of our object constructor 
+    WizardSchool.prototype.cookies = array;
+}
+
+//define a function that will add a method to our constructor to combine all our spells into a single string
+function combineCookies() {
+    //use prototype to add a new property called stringOfSpells on to all of the instances of our constructor and assign it the value of empty string
+    WizardSchool.prototype.stringOfSpells = '';
+    //use prototype to add a method called combineSpells to all of the instances of our object constructor
+    WizardSchool.prototype.combineCookies = function() {
+        //write a for loop that will loop through our spells property array and concatenate each value together assigning it to the property of stringOfSpells
+        for(let i = 0; i < this.cookies.length; i++) {
+            this.stringOfCookies += this.cookies[i] + ', ';
+        }
+    };
+}
 
 // displayTotalSpells(Hogwarts);
 // displayTotalSpells(Magica);
